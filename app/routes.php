@@ -15,3 +15,17 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('prueba', function(){
+	
+	$cliente = new Cliente;
+
+	$cliente->email = "prueba@prueba.com";
+
+	$cliente->real_name = "hola";
+	$cliente->password = "prueba";
+
+	$cliente->save();
+
+	return $cliente;
+});
