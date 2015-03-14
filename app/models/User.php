@@ -31,5 +31,5 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         }
     }
 
-    //tutorial 4
+    //tutorial 4 video youtube
 }
