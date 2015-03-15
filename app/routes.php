@@ -29,3 +29,5 @@ Route::get('prueba', function(){
 
 	return $cliente;
 });
+
+Route::resource('clientes','ClienteController');
