@@ -30,4 +30,4 @@ Route::get('prueba', function(){
 	return $cliente;
 });
 
-Route::resource('clientes','ClienteController');
+Route::controller('clientes','ClienteController');

@@ -2,18 +2,67 @@
 
 class ClienteController extends BaseController {
 
-	public function index()
+    public function getIndex()
     {
-        return "You Welcome at the index";
+        $clientes = Cliente::all();
+        return View::make('clientes.index', array('clientes' => $clientes));
     }
 
-    public function postProfile()
+    public function getCreate()
     {
-        //
+        return View::make('clientes.create');
     }
 
-    public function anyLogin()
+    public function postCreate()
     {
-        //
+        $cliente = new Cliente;
+
+    $cliente->email = "mundo@prueba.com";
+
+    $cliente->real_name = "alonso";
+    $cliente->password = "pr123ueba";
+
+    $cliente->save();
+
+    return Redirect::to('clientes');
+    }
+
+    public function getDelete($cliente_id){
+        $cliente = Cliente::find($cliente_id);
+
+        if(is_null($cliente)){
+            return Redirect::to('clientes');
+        }
+
+        $cliente->delete();
+
+        return Redirect::to('clientes');
+    }
+
+    public function getUpdate($cliente_id){
+        $cliente = Cliente::find($cliente_id);
+
+        if(is_null($cliente))
+            return Redirect::to('clientes');
+
+        return View::make('clientes.update') -> with('cliente', $cliente);       
+    }
+
+    public function postUpdate($cliente_id){
+
+        $cliente = Cliente::find($cliente_id);
+
+        if(is_null($cliente))
+            return Redirect::to('clientes');
+
+        $cliente->real_name = Input::get('real_name');
+        $cliente->email = Input::get('email');
+
+        if(Input::has('password'))
+            $cliente->password = Input::get('password');
+
+        $cliente->save();
+
+        return Redirect::to('clientes');
     }
 }
