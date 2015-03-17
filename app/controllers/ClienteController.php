@@ -17,10 +17,10 @@ class ClienteController extends BaseController {
     {
         $cliente = new Cliente;
 
-    $cliente->email = "mundo@prueba.com";
+    $cliente->email = Input::get('email');
 
-    $cliente->real_name = "alonso";
-    $cliente->password = "pr123ueba";
+    $cliente->real_name = Input::get('real_name');
+    $cliente->password = Input::get('password');
 
     $cliente->save();
 

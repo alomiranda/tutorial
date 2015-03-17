@@ -31,3 +31,9 @@ Route::get('prueba', function(){
 });
 
 Route::controller('clientes','ClienteController');
+
+Route::get('login', 'AuthController@getLogin');
+
+Route::post('login','AuthController@postLogin');
+
+Route::get('logout', 'AuthController@getLogout');
