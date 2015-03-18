@@ -2,6 +2,13 @@
 
 class ClienteController extends BaseController {
 
+    public function  __construct(){
+
+
+         $this->beforeFilter('auth',  array('except' => array('getLogin', 'postLogin')));
+    }
+
+
     public function getIndex()
     {
         $clientes = Cliente::all();

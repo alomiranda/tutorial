@@ -37,3 +37,15 @@ Route::get('login', 'AuthController@getLogin');
 Route::post('login','AuthController@postLogin');
 
 Route::get('logout', 'AuthController@getLogout');
+
+
+Route::get('auth', array('before' => 'auth.basic', function()
+{
+    return View::make('admin.dashboard');
+}));
+
+Route::filter('auth.basic', function()
+{
+    if (Auth::guest())
+    	return Redirect::to('login');
+});
