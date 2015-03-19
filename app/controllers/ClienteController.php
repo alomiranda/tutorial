@@ -22,7 +22,22 @@ class ClienteController extends BaseController {
 
     public function postCreate()
     {
-        $cliente = new Cliente;
+
+    $rules = array(
+
+        'real_name' => 'required|max:50',
+        'email' => 'required|email|unique:clientes',
+        'password' => 'required|min:5',
+    );
+
+    $validation = Validator::make(Input::all(), $rules);
+
+    if($validation->fails()){
+        return Redirect::back()->withInput();
+    }    
+
+
+    $cliente = new Cliente;
 
     $cliente->email = Input::get('email');
 
@@ -33,6 +48,8 @@ class ClienteController extends BaseController {
 
     return Redirect::to('clientes');
     }
+
+
 
     public function getDelete($cliente_id){
         $cliente = Cliente::find($cliente_id);
