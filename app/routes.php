@@ -49,3 +49,17 @@ Route::filter('auth.basic', function()
     if (Auth::guest())
     	return Redirect::to('login');
 });
+
+
+Route::get("prueba", function()
+{
+    echo Prueba::saludo();
+});
+
+
+Route::get("vistas", function()
+{
+ 
+    echo Prueba::vistas();
+    
+});
